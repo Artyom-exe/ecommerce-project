@@ -2,15 +2,13 @@ import "./style.scss";
 
 import { app } from "./framework/app";
 import { Contact } from "./pages/Contact";
-import { Home } from "./pages/Home";
-import { Users } from "./pages/Users/Users";
-import { User } from "./pages/Users/User";
+import { Products } from "./pages/Products/Products";
+import { Product } from "./pages/Products/Product";
 
 const routes = {
-  "/": Home,
   "/contact": Contact,
-  "/utilisateur": User,
-  "/utilisateurs": Users,
+  "/produit": Product,
+  "/": Products,
 };
 
 app("#app", routes);

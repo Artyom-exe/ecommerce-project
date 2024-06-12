@@ -1,8 +1,8 @@
 import { CardsList } from "../../components/CardsList";
 import { DataTable } from "../../components/DataTable";
-import users from "../../storage/users.json";
-import { UserCard } from "./Partials/UserCard";
-import { UserRow } from "./Partials/UserRow";
+import products from "../../storage/products.json";
+import { ProductCard } from "./Partials/ProductCard";
+import { ProductRow } from "./Partials/ProductRow";
 
 /**
  * Page de la liste des utilisateurs
@@ -11,7 +11,7 @@ import { UserRow } from "./Partials/UserRow";
  * @param {HTMLElement} element
  * @returns {void}
  */
-export const Users = (element) => {
+export const Products = (element) => {
   // on récupère le mode d'affichage depuis l'URL
   const url = new URL(window.location.href);
   const modeFromQueryString = url.searchParams.get("mode");
@@ -29,20 +29,20 @@ export const Users = (element) => {
         </button>
       </div>
     </div>
-    <div id="users-list"></div>
+    <div id="products-list"></div>
     `;
 
-  const usersList = element.querySelector("#users-list");
+  const productsList = element.querySelector("#products-list");
 
   // Fonction pour afficher les utilisateurs en fonction du mode d'affichage
   const render = () => {
     if (mode === "grid") {
-      CardsList(usersList, users, UserCard, ["name", "email"]);
+      CardsList(productsList, products, ProductCard, ["name", "email"]);
     } else if (mode === "table") {
       DataTable(
-        usersList,
-        users,
-        UserRow,
+        productsList,
+        products,
+        ProductRow,
         ["name", "email"],
         ["Nom", "Email", "Rôle", "Actions"]
       );
