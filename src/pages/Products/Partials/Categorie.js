@@ -10,9 +10,9 @@ export const Categorie = (categorie) => {
     product: "text-bg-primary",
   };
 
-  const categorie = categories[categorie] || "text-bg-secondary";
+  const categorieClass = categories[categorie] || "text-bg-secondary";
 
   return `
-    <span class="${categorie}">${categorie}</span>
+    <span class="${categorieClass}">${categorie}</span>
     `;
 };
