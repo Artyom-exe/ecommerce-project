@@ -6,12 +6,17 @@ import { TextInput } from "./TextInput";
  * Un composant pour afficher une liste de cartes paginée et filtrable.
  *
  * @param {HTMLElement} element
- * @param {Object[]} items
+ * @param {Object} data
  * @param {Function} itemTemplate
  * @param {string[]} searchableFields
  * @returns {void}
  */
-export const CardsList = (element, items, itemTemplate, searchableFields) => {
+export const CardsList = (element, data, itemTemplate, searchableFields) => {
+
+  let items = data.products;
+
+  console.log(items);
+
   // On récupère le numéro de page et la valeur du champ de recherche dans l'URL
   let currentPage =
     parseInt(new URL(window.location).searchParams.get("page")) || 1;
@@ -33,7 +38,7 @@ export const CardsList = (element, items, itemTemplate, searchableFields) => {
     <div id="${id}" class="row row-cols-2 row-cols-lg-3">
     </div>
     <div id="pagination"></div>
-    `;
+  `;
 
   const searchInput = element.querySelector("input#search");
   const listElement = element.querySelector(`#${id}`);
@@ -44,7 +49,7 @@ export const CardsList = (element, items, itemTemplate, searchableFields) => {
     if (filteredItems.length === 0) {
       return `
         <p>Aucun résultat</p>
-        `;
+      `;
     }
 
     // On passe le template de l'item à la fonction map pour générer une liste de cartes
@@ -143,3 +148,4 @@ export const CardsList = (element, items, itemTemplate, searchableFields) => {
     filterAndPaginate();
   });
 };
+

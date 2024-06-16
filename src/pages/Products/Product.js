@@ -1,5 +1,5 @@
-import products from "../../storage/products.json";
-import { Categorie } from "./Partials/Category";
+import productsData from "../../storage/products.json";
+import { Category } from "./Partials/Category";
 
 /**
  * Page des détails d'un utilisateur
@@ -12,8 +12,7 @@ export const Product = (element) => {
   const url = new URL(window.location.href);
   const productId = parseInt(url.searchParams.get("id"));
   // on récupère l'utilisateur correspondant à l'identifiant
-  const product = products.find((product) => product.id === productId);
-
+  const product = productsData.products.find((product) => product.id === productId);
   // si l'utilisateur n'existe pas, on affiche un message d'erreur
   if (!product) {
     element.innerHTML = `
@@ -25,7 +24,7 @@ export const Product = (element) => {
 
   element.innerHTML = `
     <h1>${product.name}</h1>
-    <p>${product.email}</p>
-    ${Category(product.categorie)}
+    <p>${product.description}</p>
+    ${Category(product.category)}
     `;
 };

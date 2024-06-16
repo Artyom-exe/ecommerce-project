@@ -1,128 +1,177 @@
-[
-  {
-    "id": 1,
-    "name": "Marie Dubois",
-    "email": "marie.dubois@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 2,
-    "name": "Jean Martin",
-    "email": "jean.martin@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 3,
-    "name": "Sophie Lambert",
-    "email": "sophie.lambert@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 4,
-    "name": "Khalid Ben Ali",
-    "email": "khalid.benali@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 5,
-    "name": "Laura Dubois",
-    "email": "laura.dubois@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 6,
-    "name": "Luc Lefevre",
-    "email": "luc.lefevre@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 7,
-    "name": "Julie Verhoeven",
-    "email": "julie.verhoeven@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 8,
-    "name": "Pierre Janssens",
-    "email": "pierre.janssens@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 9,
-    "name": "Fatoumata Koulibaly",
-    "email": "fatoumata.koulibaly@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 10,
-    "name": "Nicolas Leroy",
-    "email": "nicolas.leroy@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 11,
-    "name": "Camille Mercier",
-    "email": "camille.mercier@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 12,
-    "name": "Hugo Maes",
-    "email": "hugo.maes@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 13,
-    "name": "Elise Simon",
-    "email": "elise.simon@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 14,
-    "name": "Antoine Thomas",
-    "email": "antoine.thomas@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 15,
-    "name": "Amina Fabre",
-    "email": "amina.fabre@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 16,
-    "name": "Lucas Dupuis",
-    "email": "lucas.dupuis@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 17,
-    "name": "Cécile Dufour",
-    "email": "cecile.dufour@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 18,
-    "name": "David Laurent",
-    "email": "david.laurent@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 19,
-    "name": "Alice Dubois",
-    "email": "alice.dubois@example.com",
-    "categorie": "admin"
-  },
-  {
-    "id": 20,
-    "name": "Julien Petit",
-    "email": "julien.petit@example.com",
-    "categorie": "utilisateur"
-  },
-  {
-    "id": 21,
-    "name": "Aïsha Traoré",
-    "email": "aisha.traore@example.com",
-    "categorie": "utilisateur"
-  }
-]
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Useless Gadgets",
+      "description": "Des gadgets qui ne servent absolument à rien, mais que tout le monde veut."
+    },
+    {
+      "id": 2,
+      "name": "Strange Accessories",
+      "description": "Des accessoires pour pimenter votre quotidien de manière insolite."
+    },
+    {
+      "id": 3,
+      "name": "Bizarre Inventions",
+      "description": "Des inventions farfelues qui défient toute logique."
+    },
+    {
+      "id": 4,
+      "name": "Unusual Decorations",
+      "description": "Des objets de décoration qui sortent de l'ordinaire."
+    },
+    {
+      "id": 5,
+      "name": "Adult Toys",
+      "description": "Des jouets amusants mais totalement inutiles pour les adultes."
+    }
+  ],
+  "brands": [
+    {
+      "id": 1,
+      "name": "WackyWorld",
+      "description": "Des produits pour ceux qui vivent dans un monde parallèle.",
+      "image": "wackyworld_logo.png"
+    },
+    {
+      "id": 2,
+      "name": "OdditiesCo",
+      "description": "La marque pour les amoureux de l'inhabituel.",
+      "image": "odditiesco_logo.png"
+    },
+    {
+      "id": 3,
+      "name": "QuirkyCreations",
+      "description": "Des créations excentriques pour un quotidien moins banal.",
+      "image": "quirkycreations_logo.png"
+    },
+    {
+      "id": 4,
+      "name": "FunkyGizmos",
+      "description": "Gadgets funky pour les amateurs de nouveauté.",
+      "image": "funkygizmos_logo.png"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Self-Stirring Coffee Mug",
+      "price": 19.99,
+      "description": "Une tasse qui remue votre café automatiquement. Parce que remuer soi-même, c'est dépassé.",
+      "image": "tasse_autotournante.png",
+      "category": 1
+    },
+    {
+      "id": 2,
+      "name": "Musical Pillow",
+      "price": 34.99,
+      "description": "Un oreiller avec haut-parleurs intégrés pour écouter de la musique en dormant. Pour des rêves mélodieux.",
+      "image": "oreiller_musical.png",
+      "category": 2
+    },
+    {
+      "id": 3,
+      "name": "Glowing Socks",
+      "price": 14.99,
+      "description": "Des chaussettes qui s'illuminent dans le noir. Idéales pour ne jamais perdre ses pieds.",
+      "image": "chaussettes_lumineuses.png",
+      "category": 2
+    },
+    {
+      "id": 4,
+      "name": "Reverse Umbrella",
+      "price": 24.99,
+      "description": "Un parapluie qui s'ouvre à l'envers. Parce que parfois, la pluie aussi aime être surprise.",
+      "image": "parapluie_envers.png",
+      "category": 3
+    },
+    {
+      "id": 5,
+      "name": "Plant Pen",
+      "price": 9.99,
+      "description": "Un stylo avec une petite plante en pot à l'intérieur. Écrivez et faites pousser en même temps.",
+      "image": "stylo_plante.png",
+      "category": 3
+    },
+    {
+      "id": 6,
+      "name": "Monster Lava Lamp",
+      "price": 49.99,
+      "description": "Une lampe à lave en forme de monstre qui illumine votre pièce d'une lumière effrayante.",
+      "image": "lampe_lave_monstre.png",
+      "category": 1
+    },
+    {
+      "id": 7,
+      "name": "Compliment Mirror",
+      "price": 29.99,
+      "description": "Un miroir qui vous fait des compliments chaque fois que vous vous regardez dedans.",
+      "image": "miroir_compliments.png",
+      "category": 4
+    },
+    {
+      "id": 8,
+      "name": "Talking Keychain",
+      "price": 12.99,
+      "description": "Un porte-clés qui parle et fait des blagues à chaque fois que vous y touchez.",
+      "image": "portecles_bavard.png",
+      "category": 2
+    },
+    {
+      "id": 9,
+      "name": "Portable Popcorn Machine",
+      "price": 39.99,
+      "description": "Une mini machine à popcorn à emporter partout avec vous. Pour des en-cas croustillants à tout moment.",
+      "image": "machine_popcorn.png",
+      "category": 1
+    },
+    {
+      "id": 10,
+      "name": "Safety Cushion",
+      "price": 24.99,
+      "description": "Un coussin qui se gonfle automatiquement en cas de chute. Sécurité avant tout !",
+      "image": "coussin_securite.png",
+      "category": 3
+    },
+    {
+      "id": 11,
+      "name": "Decision Dice",
+      "price": 7.99,
+      "description": "Un dé géant avec des réponses à vos questions existentielles. Laissez le hasard décider pour vous.",
+      "image": "de_decisions.png",
+      "category": 5
+    },
+    {
+      "id": 12,
+      "name": "Invisible Whistle",
+      "price": 9.99,
+      "description": "Un sifflet qui émet un son à haute fréquence que seuls les chiens peuvent entendre. Pour communiquer en secret.",
+      "image": "sifflet_invisible.png",
+      "category": 2
+    },
+    {
+      "id": 13,
+      "name": "Bubble Magic Wand",
+      "price": 14.99,
+      "description": "Une baguette magique qui génère des bulles de savon. Idéale pour les apprentis sorciers.",
+      "image": "baguette_bulles.png",
+      "category": 5
+    },
+    {
+      "id": 14,
+      "name": "Electronic Post-it",
+      "price": 19.99,
+      "description": "Des post-it digitaux qui s'illuminent pour vous rappeler vos tâches. Parce que les notes en papier, c'est trop 20ème siècle.",
+      "image": "postit_electronique.png",
+      "category": 1
+    },
+    {
+      "id": 15,
+      "name": "Pocket Fan",
+      "price": 15.99,
+      "description": "Un mini ventilateur à glisser dans la poche pour rester au frais en toute circonstance.",
+      "image": "ventilateur_poche.png",
+      "category": 2
+    }
+  ]
+}

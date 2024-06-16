@@ -1,10 +1,10 @@
-import { Categorie } from "./Category";
+import { Category } from "./Category";
 
 /**
  * @typedef {Object} product
  * @property {number} id - L'identifiant de l'utilisateur.
  * @property {string} name - Le nom de l'utilisateur.
- * @property {string} email - L'adresse email de l'utilisateur.
+ * @property {string} description - L'adresse email de l'utilisateur.
  * @property {string} category - Le rôle de l'utilisateur.
  */
 
@@ -20,7 +20,7 @@ export const ProductCard = (product) => {
       <a class="card product-link" href="/produit?id=${product.id}">
         <div class="card-body">
           <h5 class="card-title">${product.name}</h5>
-          <p class="card-text">${product.email}</p>
+          <p class="card-text">${product.description}</p>
           ${Category(product.category)}
         </div>
       </a>

@@ -1,4 +1,4 @@
-import { Categorie } from "./Category";
+import { Category } from "./Category";
 
 /**
  * @typedef {Object} product
@@ -17,8 +17,8 @@ import { Categorie } from "./Category";
 export const ProductRow = (product) => {
   return `
     <tr>
-      <td>${product.pro_nom}</td>
-      <td>${product.pro_prix}</td>
+      <td>${product.name}</td>
+      <td>${product.price}</td>
       <td>${Category(product.category)}</td>
       <td><a class="btn btn-primary btn-sm" href="/produit?id=${
         product.id

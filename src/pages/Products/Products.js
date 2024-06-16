@@ -11,6 +11,7 @@ import { ProductRow } from "./Partials/ProductRow";
  * @param {HTMLElement} element
  * @returns {void}
  */
+
 export const Products = (element) => {
   // on récupère le mode d'affichage depuis l'URL
   const url = new URL(window.location.href);
@@ -19,7 +20,7 @@ export const Products = (element) => {
 
   element.innerHTML = `
     <div class="d-flex justify-content-between">
-      <h1>Utilisateurs</h1>
+      <h1>Produits</h1>
       <div>
         <button id="grid-mode-btn" class="btn btn-sm btn-secondary mr-3">
           <i class="ri-layout-grid-line"></i>
@@ -37,14 +38,14 @@ export const Products = (element) => {
   // Fonction pour afficher les utilisateurs en fonction du mode d'affichage
   const render = () => {
     if (mode === "grid") {
-      CardsList(productsList, products, ProductCard, ["name", "email"]);
+      CardsList(productsList, products, ProductCard, ["name", "description"]);
     } else if (mode === "table") {
       DataTable(
         productsList,
         products,
         ProductRow,
-        ["name", "email"],
-        ["Nom", "Email", "Catégorie", "Actions"]
+        ["name", "description"],
+        ["Nom", "Description", "Catégorie", "Actions"]
       );
     }
   };

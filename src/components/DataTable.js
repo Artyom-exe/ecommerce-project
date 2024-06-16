@@ -6,7 +6,7 @@ import { TextInput } from "./TextInput";
  * Un composant pour afficher un tableau paginé et filtrable.
  *
  * @param {HTMLElement} element
- * @param {Object[]} items
+ * @param {Object} data
  * @param {Function} itemTemplate
  * @param {string[]} searchableFields
  * @param {string[]} tableHeadings
@@ -14,11 +14,12 @@ import { TextInput } from "./TextInput";
  */
 export const DataTable = (
   element,
-  items,
+  data,
   itemTemplate,
   searchableFields,
   tableHeadings
 ) => {
+  let items = data.products;
   let currentPage =
     parseInt(new URL(window.location).searchParams.get("page")) || 1;
   let searchInputValue =
