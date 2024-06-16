@@ -44,7 +44,7 @@ export const Products = (element) => {
         products,
         ProductRow,
         ["name", "email"],
-        ["Nom", "Email", "Rôle", "Actions"]
+        ["Nom", "Email", "Catégorie", "Actions"]
       );
     }
   };

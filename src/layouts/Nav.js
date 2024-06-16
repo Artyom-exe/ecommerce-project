@@ -18,7 +18,7 @@ export const Nav = (element) => {
    */
   const links = [
     { href: "/", text: "Accueil" },
-    { href: "/category", text: "Catégorie" },
+    { href: "/categorie", text: "Catégorie" },
     { href: "/contact", text: "Contact" },
   ];
 

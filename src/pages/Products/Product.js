@@ -1,5 +1,5 @@
 import products from "../../storage/products.json";
-import { RoleBadge } from "./Partials/RoleBadge";
+import { Categorie } from "./Partials/Categorie";
 
 /**
  * Page des détails d'un utilisateur
@@ -26,6 +26,6 @@ export const Product = (element) => {
   element.innerHTML = `
     <h1>${product.name}</h1>
     <p>${product.email}</p>
-    ${RoleBadge(product.role)}
+    ${Categorie(product.categorie)}
     `;
 };
