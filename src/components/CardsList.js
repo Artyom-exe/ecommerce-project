@@ -14,9 +14,7 @@ import { TextInput } from "./TextInput";
 export const CardsList = (element, data, itemTemplate, searchableFields) => {
 
   let items = data.products;
-
-  console.log(items);
-
+  
   // On récupère le numéro de page et la valeur du champ de recherche dans l'URL
   let currentPage =
     parseInt(new URL(window.location).searchParams.get("page")) || 1;
