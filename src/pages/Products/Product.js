@@ -22,9 +22,21 @@ export const Product = (element) => {
     return;
   }
 
-  element.innerHTML = `
-    <h1>${product.name}</h1>
-    <p>${product.description}</p>
-    ${Category(product.category)}
-    `;
+element.innerHTML = `
+  <div class="d-flex flex-column align-items-center justify-content-center min-vh-100">
+    <div class="text-left w-100" style="max-width: 600px;">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>${product.name}</h1>
+        <h2 class="card-price">${product.price}</h2>
+      </div>
+      <p>${product.description}</p>
+      <img class="img-product" src="${product.image}" style="width: 100%;">
+    </div>
+    <div class="text-left mt-3 w-100" style="max-width: 600px;">
+      ${Category(product.category)}
+    </div>
+  </div>
+`;
+
+
 };

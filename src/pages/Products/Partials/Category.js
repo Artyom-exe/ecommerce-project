@@ -19,7 +19,11 @@ export const Category = (categoryId) => {
 
   // Définissez la classe de catégorie en fonction de l'identifiant
   const myCategory = {
-    [categoryId]: "text-bg-danger",
+    1: "text-bg-danger custom-text rounded p-1",
+    2: "text-bg-warning custom-text rounded p-1",
+    3: "text-bg-info custom-text rounded p-1",
+    4: "text-bg-success custom-text rounded p-1",
+    5: "text-bg-primary custom-text rounded p-1",
   };
 
   const categoryClass = myCategory[categoryId] || "text-bg-secondary";
