@@ -20,42 +20,51 @@ export const Nav = (element) => {
   ];
 
   element.innerHTML = `
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">${appName}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            ${links
-              .map(
-                (link) => link.dropdown 
-                  ? `
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      ${link.text}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#" onclick="navigateToCategory('none')">Pas de catégories</a></li>
-                      ${link.dropdown.map(sublink => `
-                        <li><a class="dropdown-item" href="#" onclick="navigateToCategory('${sublink.category}')">${sublink.text}</a></li>
-                      `).join('')}
-                    </ul>
-                  </li>
-                  `
-                  : `
-                  <li class="nav-item">
-                    <a class="nav-link" href="${link.href}">${link.text}</a>
-                  </li>
-                  `
-              )
-              .join("")}
-          </ul>
-        </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">${appName}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          ${links
+            .map(
+              (link) => link.dropdown 
+                ? `
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    ${link.text}
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#" onclick="navigateToCategory('none')">Pas de catégories</a></li>
+                    ${link.dropdown.map(sublink => `
+                      <li><a class="dropdown-item" href="#" onclick="navigateToCategory('${sublink.category}')">${sublink.text}</a></li>
+                    `).join('')}
+                  </ul>
+                </li>
+                `
+                : `
+                <li class="nav-item">
+                  <a class="nav-link" href="${link.href}">${link.text}</a>
+                </li>
+                `
+            )
+            .join("")}
+        </ul>
       </div>
-    </nav>
-  `;
+
+      <!-- Élément du panier -->
+      <div class="cart-container">
+        <a href="/panier" class="nav-link">
+          <i class="bi bi-cart"></i> Panier
+          <!-- Ici, vous pouvez afficher le nombre d'articles dans le panier -->
+        </a>
+      </div>
+    </div>
+  </nav>
+`;
+
 
   window.navigateToCategory = (categoryId) => {
     let url = new URL(window.location);
