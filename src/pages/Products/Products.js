@@ -35,21 +35,24 @@ export const Products = (element) => {
 
   const productsList = element.querySelector("#products-list");
 
+  let categoryId = url.searchParams.get("category");
+  let intCategoryId = parseInt(categoryId);
+
+
   // Fonction pour afficher les utilisateurs en fonction du mode d'affichage
   const render = () => {
     if (mode === "grid") {
-      CardsList(productsList, products, ProductCard, ["name", "description"]);
+      CardsList(productsList, products, ProductCard, ["name", "description"], intCategoryId);
     } else if (mode === "table") {
       DataTable(
         productsList,
         products,
         ProductRow,
         ["name", "description"],
-        ["Nom", "Description", "Catégorie", "Actions"]
+        ["Nom", "prix", "Catégorie", "lien"], intCategoryId
       );
     }
   };
-
   // Met à jour le mode dans l'URL
   const putModeInQueryString = () => {
     const url = new URL(window.location.href);

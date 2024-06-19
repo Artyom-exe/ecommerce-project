@@ -8,6 +8,7 @@ import { TextInput } from "./TextInput";
  * @param {HTMLElement} element
  * @param {Object} data
  * @param {Function} itemTemplate
+ * @param {string} [category] - ID de la catégorie sélectionnée.
  * @param {string[]} searchableFields
  * @param {string[]} tableHeadings
  * @returns {void}
@@ -17,7 +18,8 @@ export const DataTable = (
   data,
   itemTemplate,
   searchableFields,
-  tableHeadings
+  tableHeadings,
+  category
 ) => {
   let items = data.products;
   let currentPage =
@@ -68,15 +70,20 @@ export const DataTable = (
 
   const filterAndPaginate = (perPage = 10) => {
     const value = searchInputValue.toLowerCase();
+    // On filtre les items en fonction de la catégorie sélectionnée
+    if (category) {
+      filteredItems = items.filter(item => item.category === category);
+    } else {
+      filteredItems = items;
+    }
+    
     if (value !== "") {
-      filteredItems = items.filter(
+      filteredItems = filteredItems.filter(
         (item) =>
           searchableFields.filter((field) =>
             item[field].toLowerCase().includes(value)
           ).length > 0
       );
-    } else {
-      filteredItems = items;
     }
 
     const start = (currentPage - 1) * perPage;

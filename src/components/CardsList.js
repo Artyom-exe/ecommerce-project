@@ -1,7 +1,6 @@
 import { ROUTE_CHANGED_EVENT } from "../framework/app";
 import { Pagination } from "./Pagination";
 import { TextInput } from "./TextInput";
-
 /**
  * Un composant pour afficher une liste de cartes paginée et filtrable.
  *
@@ -9,9 +8,10 @@ import { TextInput } from "./TextInput";
  * @param {Object} data
  * @param {Function} itemTemplate
  * @param {string[]} searchableFields
+ * @param {string} [category] - ID de la catégorie sélectionnée.
  * @returns {void}
  */
-export const CardsList = (element, data, itemTemplate, searchableFields) => {
+export const CardsList = (element, data, itemTemplate, searchableFields, category) => {
 
   let items = data.products;
   
@@ -59,29 +59,34 @@ export const CardsList = (element, data, itemTemplate, searchableFields) => {
   // Fonction pour filtrer et paginer les items
   const filterAndPaginate = (perPage = 12) => {
     const value = searchInputValue.toLowerCase();
+    // On filtre les items en fonction de la catégorie sélectionnée
+    if (category) {
+      filteredItems = items.filter(item => item.category === category);
+    } else {
+      filteredItems = items;
+    }
+
     // On filtre les items en fonction de la valeur du champ de recherche
     // et des champs de recherche spécifiés
     if (value !== "") {
-      filteredItems = items.filter(
+      filteredItems = filteredItems.filter(
         (item) =>
           searchableFields.filter((field) =>
             item[field].toLowerCase().includes(value)
           ).length > 0
       );
-    } else {
-      filteredItems = items;
     }
-
+    
     // On calcule l'index de départ et de fin des items à afficher
     const start = (currentPage - 1) * perPage;
     const end = Math.min(start + perPage, filteredItems.length);
     // On calcule le nombre de pages
     const pages = Math.ceil(filteredItems.length / perPage);
     // On récupère les items à afficher
-    filteredItems = filteredItems.slice(start, end);
+    const paginatedItems = filteredItems.slice(start, end);
 
     // On met à jour le contenu de la liste et de la pagination
-    listElement.innerHTML = renderList(filteredItems);
+    listElement.innerHTML = renderList(paginatedItems);
     paginationElement.innerHTML = Pagination(currentPage, pages);
 
     const paginationLinks = paginationElement.querySelectorAll("a");
@@ -146,4 +151,3 @@ export const CardsList = (element, data, itemTemplate, searchableFields) => {
     filterAndPaginate();
   });
 };
-

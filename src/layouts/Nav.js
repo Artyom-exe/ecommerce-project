@@ -1,28 +1,15 @@
 import { ROUTE_CHANGED_EVENT } from "../framework/app";
+import { Products } from "../pages/Products/Products";
 import productsData from "../storage/products.json";
 
-/**
- * @typedef {Object} Link
- * @property {string} href - L'URL du lien.
- * @property {string} text - Le texte du lien.
- */
-
-/**
- * @param {HTMLElement} element
- * @returns {void}
- */
 export const Nav = (element) => {
   const appName = "Une App";
 
-  // Créer des liens de catégories à partir des données de produits
   const categoryLinks = productsData.categories.map(category => ({
     category: category.id,
     text: category.name
   }));
 
-  /**
-   * @type {Link[]}
-   */
   const links = [
     { href: "/", text: "Accueil" },
     { 
@@ -50,8 +37,9 @@ export const Nav = (element) => {
                       ${link.text}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#" onclick="navigateToCategory('none')">Pas de catégories</a></li>
                       ${link.dropdown.map(sublink => `
-                        <li><a class="dropdown-item" href="#" onclick="filterProducts(${sublink.category})">${sublink.text}</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="navigateToCategory('${sublink.category}')">${sublink.text}</a></li>
                       `).join('')}
                     </ul>
                   </li>
@@ -69,12 +57,14 @@ export const Nav = (element) => {
     </nav>
   `;
 
-  // Fonction pour filtrer les produits en fonction de la catégorie
-  window.filterProducts = (categoryId) => {
-    console.log(`Filtering products by category: ${categoryId}`);
-    const filteredProducts = productsData.products.filter(product => product.category === categoryId);
-    // Mettre à jour l'affichage des produits ici
-    console.log(filteredProducts);
+  window.navigateToCategory = (categoryId) => {
+    let url = new URL(window.location);
+    url.searchParams.set("category", categoryId);
+    window.history.pushState({}, "", url);
+    const headerElement = document.querySelector("header");
+    headerElement.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
+    const main = document.querySelector("main");
+    Products(main);
   };
 
   // Remplace les liens par des événements de navigation
