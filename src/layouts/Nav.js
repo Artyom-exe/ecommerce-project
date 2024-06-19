@@ -1,4 +1,5 @@
 import { ROUTE_CHANGED_EVENT } from "../framework/app";
+import productsData from "../storage/products.json";
 
 /**
  * @typedef {Object} Link
@@ -13,12 +14,21 @@ import { ROUTE_CHANGED_EVENT } from "../framework/app";
 export const Nav = (element) => {
   const appName = "Une App";
 
+  // Créer des liens de catégories à partir des données de produits
+  const categoryLinks = productsData.categories.map(category => ({
+    category: category.id,
+    text: category.name
+  }));
+
   /**
    * @type {Link[]}
    */
   const links = [
     { href: "/", text: "Accueil" },
-    { href: "/categorie", text: "Catégorie" },
+    { 
+      text: "Catégorie", 
+      dropdown: categoryLinks 
+    },
     { href: "/contact", text: "Contact" },
   ];
 
@@ -33,17 +43,39 @@ export const Nav = (element) => {
           <ul class="navbar-nav">
             ${links
               .map(
-                (link) => `
-                <li class="nav-item">
-                  <a class="nav-link" href="${link.href}">${link.text}</a>
-                </li>`
+                (link) => link.dropdown 
+                  ? `
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      ${link.text}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      ${link.dropdown.map(sublink => `
+                        <li><a class="dropdown-item" href="#" onclick="filterProducts(${sublink.category})">${sublink.text}</a></li>
+                      `).join('')}
+                    </ul>
+                  </li>
+                  `
+                  : `
+                  <li class="nav-item">
+                    <a class="nav-link" href="${link.href}">${link.text}</a>
+                  </li>
+                  `
               )
               .join("")}
           </ul>
         </div>
       </div>
     </nav>
-    `;
+  `;
+
+  // Fonction pour filtrer les produits en fonction de la catégorie
+  window.filterProducts = (categoryId) => {
+    console.log(`Filtering products by category: ${categoryId}`);
+    const filteredProducts = productsData.products.filter(product => product.category === categoryId);
+    // Mettre à jour l'affichage des produits ici
+    console.log(filteredProducts);
+  };
 
   // Remplace les liens par des événements de navigation
   const replaceLinksByEvents = () => {
