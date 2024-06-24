@@ -1,5 +1,3 @@
-// cart.js
-
 // Initialisation du panier depuis le stockage local
 export let panier = JSON.parse(localStorage.getItem('panier')) || [];
 
@@ -12,6 +10,16 @@ export function ajouterAuPanier(produit) {
   }
   localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourCompteurPanier();
+
+  // Animation d'ajout au panier avec Bootstrap et animate.css
+  const cartIcon = document.querySelector('.cart-icon');
+  if (cartIcon) {
+    cartIcon.classList.add('animate__animated', 'animate__rubberBand'); // Changer l'animation selon vos préférences
+    setTimeout(() => {
+      cartIcon.classList.remove('animate__animated', 'animate__rubberBand');
+    }, 1000); // Durée de l'animation
+  }
+
   document.dispatchEvent(new CustomEvent('panierUpdated'));
 }
 

@@ -60,7 +60,20 @@
       "description": "Une tasse qui remue votre café automatiquement. Parce que remuer soi-même, c'est dépassé.",
       "image": "public/tasse_autotournante.png",
       "category": 1,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "MondeFarfelu",
+      "reviews": [
+        {
+          "username": "John Doe",
+          "rating": 4,
+          "comment": "Très pratique, mais un peu bruyant."
+        },
+        {
+          "username": "Jane Smith",
+          "rating": 5,
+          "comment": "Je l'adore !"
+        }
+      ]
     },
     {
       "id": 2,
@@ -69,7 +82,20 @@
       "description": "Un oreiller avec haut-parleurs intégrés pour écouter de la musique en dormant. Pour des rêves mélodieux.",
       "image": "public/oreiller_musical.png",
       "category": 2,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "BizarreriesCo",
+      "reviews": [
+        {
+          "username": "Alice",
+          "rating": 3,
+          "comment": "Bonne idée, mais pas très confortable."
+        },
+        {
+          "username": "Bob",
+          "rating": 5,
+          "comment": "Super pour s'endormir en musique."
+        }
+      ]
     },
     {
       "id": 3,
@@ -78,7 +104,20 @@
       "description": "Des chaussettes qui s'illuminent dans le noir. Idéales pour ne jamais perdre ses pieds.",
       "image": "public/chaussettes_lumineuses.png",
       "category": 2,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "CréationsExcentriques",
+      "reviews": [
+        {
+          "username": "Charlie",
+          "rating": 4,
+          "comment": "Amusantes et pratiques."
+        },
+        {
+          "username": "Dana",
+          "rating": 5,
+          "comment": "Mes enfants les adorent."
+        }
+      ]
     },
     {
       "id": 4,
@@ -87,7 +126,20 @@
       "description": "Un grille-pain avec une caméra intégrée pour capturer des selfies parfaits pendant que vous faites griller votre pain.",
       "image": "public/grille_pain.png",
       "category": 3,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "MondeFarfelu",
+      "reviews": [
+        {
+          "username": "Eve",
+          "rating": 3,
+          "comment": "Idée drôle, mais pas très pratique."
+        },
+        {
+          "username": "Frank",
+          "rating": 4,
+          "comment": "Fait des toasts parfaits."
+        }
+      ]
     },
     {
       "id": 5,
@@ -96,7 +148,20 @@
       "description": "Un stylo avec une petite plante en pot à l'intérieur. Écrivez et faites pousser en même temps.",
       "image": "public/stylo_plante.png",
       "category": 3,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "BizarreriesCo",
+      "reviews": [
+        {
+          "username": "Grace",
+          "rating": 5,
+          "comment": "Très original, j'adore !"
+        },
+        {
+          "username": "Henry",
+          "rating": 4,
+          "comment": "Sympa, mais la plante pousse lentement."
+        }
+      ]
     },
     {
       "id": 6,
@@ -105,7 +170,20 @@
       "description": "Une lampe à lave en forme de monstre qui illumine votre pièce d'une lumière effrayante.",
       "image": "public/lampe_lave_monstre.png",
       "category": 1,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "CréationsExcentriques",
+      "reviews": [
+        {
+          "username": "Ivy",
+          "rating": 5,
+          "comment": "Très cool et effrayante."
+        },
+        {
+          "username": "Jack",
+          "rating": 4,
+          "comment": "Superbe lampe, mais un peu chère."
+        }
+      ]
     },
     {
       "id": 7,
@@ -114,7 +192,20 @@
       "description": "Un miroir qui vous fait des compliments chaque fois que vous vous regardez dedans.",
       "image": "public/miroir_compliments.png",
       "category": 4,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "GadgetsFunky",
+      "reviews": [
+        {
+          "username": "Karen",
+          "rating": 5,
+          "comment": "Me fait sourire chaque matin."
+        },
+        {
+          "username": "Leo",
+          "rating": 4,
+          "comment": "Amusant, mais les compliments se répètent."
+        }
+      ]
     },
     {
       "id": 8,
@@ -123,7 +214,20 @@
       "description": "Un porte-clés qui parle et fait des blagues à chaque fois que vous y touchez.",
       "image": "public/portecles_bavard.png",
       "category": 2,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "MondeFarfelu",
+      "reviews": [
+        {
+          "username": "Mona",
+          "rating": 4,
+          "comment": "Très drôle, mais parfois agaçant."
+        },
+        {
+          "username": "Nick",
+          "rating": 5,
+          "comment": "Les blagues sont hilarantes."
+        }
+      ]
     },
     {
       "id": 9,
@@ -132,7 +236,20 @@
       "description": "Une mini machine à popcorn à emporter partout avec vous. Pour des en-cas croustillants à tout moment.",
       "image": "public/machine_popcorn.png",
       "category": 1,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "BizarreriesCo",
+      "reviews": [
+        {
+          "username": "Olivia",
+          "rating": 5,
+          "comment": "Super pratique pour les soirées cinéma."
+        },
+        {
+          "username": "Paul",
+          "rating": 4,
+          "comment": "Fait du bon popcorn, mais un peu lente."
+        }
+      ]
     },
     {
       "id": 10,
@@ -141,7 +258,20 @@
       "description": "Un coussin qui se gonfle automatiquement en cas de chute. Sécurité avant tout !",
       "image": "public/coussin_securite.png",
       "category": 3,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "GadgetsFunky",
+      "reviews": [
+        {
+          "username": "Quinn",
+          "rating": 5,
+          "comment": "Très confortable et rassurant."
+        },
+        {
+          "username": "Rachel",
+          "rating": 4,
+          "comment": "Fonctionne bien, mais un peu encombrant."
+        }
+      ]
     },
     {
       "id": 11,
@@ -150,7 +280,20 @@
       "description": "Un dé géant avec des réponses à vos questions existentielles. Laissez le hasard décider pour vous.",
       "image": "public/de_decisions.png",
       "category": 5,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "CréationsExcentriques",
+      "reviews": [
+        {
+          "username": "Sam",
+          "rating": 5,
+          "comment": "Amusant pour des décisions rapides."
+        },
+        {
+          "username": "Tina",
+          "rating": 4,
+          "comment": "Intéressant, mais les réponses sont parfois aléatoires."
+        }
+      ]
     },
     {
       "id": 12,
@@ -159,7 +302,20 @@
       "description": "Un sifflet qui émet un son à haute fréquence que seuls les chiens peuvent entendre. Pour communiquer en secret.",
       "image": "public/sifflet_invisible.png",
       "category": 2,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "MondeFarfelu",
+      "reviews": [
+        {
+          "username": "Ursula",
+          "rating": 3,
+          "comment": "Idée intéressante, mais difficile à utiliser."
+        },
+        {
+          "username": "Victor",
+          "rating": 4,
+          "comment": "Fonctionne bien avec mon chien !"
+        }
+      ]
     },
     {
       "id": 13,
@@ -168,7 +324,20 @@
       "description": "Une baguette magique qui génère des bulles de savon. Idéale pour les apprentis sorciers.",
       "image": "public/baguette_bulles.png",
       "category": 5,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "GadgetsFunky",
+      "reviews": [
+        {
+          "username": "Wendy",
+          "rating": 5,
+          "comment": "Mes enfants l'adorent !"
+        },
+        {
+          "username": "Xavier",
+          "rating": 4,
+          "comment": "Belle idée pour jouer dehors."
+        }
+      ]
     },
     {
       "id": 14,
@@ -177,7 +346,20 @@
       "description": "Des post-it digitaux qui s'illuminent pour vous rappeler vos tâches. Parce que les notes en papier, c'est trop 20ème siècle.",
       "image": "public/postit_electronique.png",
       "category": 1,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "CréationsExcentriques",
+      "reviews": [
+        {
+          "username": "Yvonne",
+          "rating": 4,
+          "comment": "Pratique pour rester organisé."
+        },
+        {
+          "username": "Zack",
+          "rating": 5,
+          "comment": "Génial pour le bureau."
+        }
+      ]
     },
     {
       "id": 15,
@@ -186,7 +368,20 @@
       "description": "Un mini ventilateur à glisser dans la poche pour rester au frais en toute circonstance.",
       "image": "public/ventilateur_poche.png",
       "category": 2,
-      "quantity": 0
+      "quantity": 0,
+      "manufacturer": "BizarreriesCo",
+      "reviews": [
+        {
+          "username": "Amy",
+          "rating": 5,
+          "comment": "Très pratique en été."
+        },
+        {
+          "username": "Ben",
+          "rating": 4,
+          "comment": "Petit mais puissant."
+        }
+      ]
     }
   ]
 }

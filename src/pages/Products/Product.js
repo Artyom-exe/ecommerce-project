@@ -1,5 +1,3 @@
-// product.js
-
 import productsData from "../../storage/products.json";
 import { ajouterAuPanier } from "../../components/cart";
 
@@ -10,29 +8,83 @@ export const Product = (element) => {
 
   if (!product) {
     element.innerHTML = `
-      <h1>Produit non trouvé</h1>
-      <p>Le produit avec l'identifiant ${productId} n'existe pas.</p>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Produit non trouvé</h4>
+        <p>Le produit avec l'identifiant ${productId} n'existe pas.</p>
+      </div>
     `;
     return;
   }
 
-  element.innerHTML = `
-    <div class="d-flex flex-column align-items-center justify-content-center min-vh-100">
-      <div class="text-left w-100" style="max-width: 600px;">
-        <div class="d-flex justify-content-between align-items-center">
-          <h1>${product.name}</h1>
-          <h2 class="card-price">${product.price} €</h2>
-        </div>
-        <p>${product.description}</p>
-        <img class="img-product" src="${product.image}" style="width: 100%;">
+  const generateStarRating = (rating) => {
+    const starsTotal = 5;
+    const starPercentage = (rating / starsTotal) * 100;
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    
+    const filledStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
+
+    let starsHTML = '';
+
+    for (let i = 1; i <= filledStars; i++) {
+      starsHTML += '<i class="fas fa-star"></i>';
+    }
+
+    if (halfStar) {
+      starsHTML += '<i class="fas fa-star-half-alt"></i>';
+    }
+
+    const emptyStars = starsTotal - Math.ceil(rating);
+    for (let i = 1; i <= emptyStars; i++) {
+      starsHTML += '<i class="far fa-star"></i>';
+    }
+
+    return `
+      <div class="star-rating">
+        ${starsHTML}
       </div>
-      <div class="text-left mt-3 w-100" style="max-width: 600px;">
-        <div class="input-group mb-3">
-          <button class="btn btn-outline-secondary" type="button" id="decrease-quantity">-</button>
-          <input type="text" class="form-control text-center" id="quantity" value="1" readonly>
-          <button class="btn btn-outline-secondary" type="button" id="increase-quantity">+</button>
+    `;
+  };
+
+  const reviewsHTML = product.reviews.map(review => `
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">${review.username} - ${generateStarRating(review.rating)}</h5>
+        <p class="card-text">${review.comment}</p>
+      </div>
+    </div>
+  `).join('');
+
+  element.innerHTML = `
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm mb-4">
+            <img src="${product.image}" class="card-img-top img-fluid" alt="${product.name}">
+          </div>
         </div>
-        <button class="btn btn-primary mt-2" id="add-to-cart">Ajouter au panier</button>
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body">
+              <h1 class="card-title">${product.name}</h1>
+              <h2 class="card-text text-muted">${product.price.toFixed(2)} €</h2>
+              <p class="card-text">${product.description}</p>
+              <p class="card-text"><strong>Fabricant:</strong> ${product.manufacturer}</p>
+              <div class="input-group mb-3">
+                <button class="btn btn-outline-secondary" type="button" id="decrease-quantity">-</button>
+                <input type="text" class="form-control text-center" id="quantity" value="1" readonly>
+                <button class="btn btn-outline-secondary" type="button" id="increase-quantity">+</button>
+              </div>
+              <button class="btn btn-primary btn-block btn-lg" id="add-to-cart">Ajouter au panier</button>
+            </div>
+          </div>
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Avis des clients</h3>
+              ${reviewsHTML || '<p class="card-text text-muted">Aucun avis pour ce produit.</p>'}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `;

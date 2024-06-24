@@ -26,3 +26,55 @@ img {
     margin-right: 5px;
     /* Marge à droite de l'icône du panier */
 }
+.cart-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-icon {
+    font-size: 1.5rem;
+}
+
+#cart-count {
+    margin-left: 5px;
+    font-size: 1rem;
+}
+.list-group-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.list-group-item .btn {
+    min-width: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.logo-text {
+    color: #333;
+}
+
+.logo-highlight {
+    color: #007bff;
+    /* Utilisation d'une couleur bleue pour le "JS" */
+    margin-left: 0.2rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    /* Optionnel : fond léger pour "JS" */
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+}

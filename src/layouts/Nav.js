@@ -3,8 +3,6 @@ import { Products } from "../pages/Products/Products";
 import productsData from "../storage/products.json";
 
 export const Nav = (element) => {
-  const appName = "Une App";
-
   const categoryLinks = productsData.categories.map(category => ({
     category: category.id,
     text: category.name
@@ -18,7 +16,11 @@ export const Nav = (element) => {
   element.innerHTML = `
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">${appName}</a>
+      <a class="navbar-brand" href="/">
+        <div class="logo">
+          <span class="logo-text">Project</span><span class="logo-highlight">JS</span>
+        </div>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -50,8 +52,8 @@ export const Nav = (element) => {
       <!-- Élément du panier -->
       <div class="cart-container">
         <a href="/panier" class="nav-link">
-          <i class="bi bi-cart"></i> Panier
-          <span id="cart-count"></span>
+          <i class="fas fa-shopping-cart cart-icon"></i> Panier
+          <span id="cart-count" class="badge bg-primary rounded-pill"></span>
         </a>
       </div>
     </div>
@@ -130,11 +132,11 @@ export const Nav = (element) => {
 
     // Si la page courante n'est pas une page de navigation, on affiche uniquement le nom de l'application
     if (!activeLink) {
-      document.title = appName;
+      document.title = "Une App";
       return;
     }
 
-    document.title = `${activeLink.textContent} - ${appName}`;
+    document.title = `${activeLink.textContent} - Une App`;
   };
 
   // Initialise la barre de navigation
