@@ -1,6 +1,7 @@
 import { ROUTE_CHANGED_EVENT } from "../framework/app";
 import { Pagination } from "./Pagination";
 import { TextInput } from "./TextInput";
+
 /**
  * Un composant pour afficher une liste de cartes paginée et filtrable.
  *
@@ -12,17 +13,12 @@ import { TextInput } from "./TextInput";
  * @returns {void}
  */
 export const CardsList = (element, data, itemTemplate, searchableFields, category) => {
-
   let items = data.products;
   
   // On récupère le numéro de page et la valeur du champ de recherche dans l'URL
-  let currentPage =
-    parseInt(new URL(window.location).searchParams.get("page")) || 1;
-  let searchInputValue =
-    new URL(window.location).searchParams.get("search") || "";
-  // On initialise une copie des items pour les filtrer et paginer
-  // cela nous permet de ne pas modifier le tableau d'origine
-  let filteredItems = items;
+  const urlParams = new URLSearchParams(window.location.search);
+  let currentPage = parseInt(urlParams.get("page")) || 1;
+  let searchInputValue = urlParams.get("search") || "";
 
   // On génère un identifiant unique pour le composant
   const id = `list-${Math.random().toString(36).slice(2)}`;
@@ -59,21 +55,14 @@ export const CardsList = (element, data, itemTemplate, searchableFields, categor
   // Fonction pour filtrer et paginer les items
   const filterAndPaginate = (perPage = 12) => {
     const value = searchInputValue.toLowerCase();
+    
     // On filtre les items en fonction de la catégorie sélectionnée
-    if (category) {
-      filteredItems = items.filter(item => item.category === category);
-    } else {
-      filteredItems = items;
-    }
+    let filteredItems = category ? items.filter(item => item.category === category) : items;
 
     // On filtre les items en fonction de la valeur du champ de recherche
-    // et des champs de recherche spécifiés
-    if (value !== "") {
+    if (value) {
       filteredItems = filteredItems.filter(
-        (item) =>
-          searchableFields.filter((field) =>
-            item[field].toLowerCase().includes(value)
-          ).length > 0
+        item => searchableFields.some(field => item[field].toLowerCase().includes(value))
       );
     }
     
@@ -89,65 +78,48 @@ export const CardsList = (element, data, itemTemplate, searchableFields, categor
     listElement.innerHTML = renderList(paginatedItems);
     paginationElement.innerHTML = Pagination(currentPage, pages);
 
-    const paginationLinks = paginationElement.querySelectorAll("a");
-    // On ajoute un écouteur d'événement sur chaque lien de pagination
-    const paginationLinkClickHandler = (event) => {
-      event.preventDefault();
-      // On récupère le numéro de page à partir de l'URL du lien de pagination cliqué
-      currentPage = parseInt(
-        new URL(event.currentTarget.href).searchParams.get("page")
-      );
-      // On met à jour l'URL de la page sans recharger la page
-      const url = new URL(window.location);
-      url.searchParams.set("page", currentPage);
-      window.history.pushState({}, "", url);
-      // On filtre et on pagine les items
-      filterAndPaginate();
-    };
-    // On ajoute un écouteur d'événement sur chaque lien de pagination
-    for (let i = 0; i < paginationLinks.length; i++) {
-      paginationLinks[i].addEventListener("click", paginationLinkClickHandler);
-    }
+    // Ajout des écouteurs d'événements sur les liens de pagination
+    paginationElement.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        currentPage = parseInt(new URL(event.currentTarget.href).searchParams.get("page"));
+        const url = new URL(window.location);
+        url.searchParams.set("page", currentPage);
+        window.history.pushState({}, "", url);
+        filterAndPaginate();
+      });
+    });
 
-    const cardsLinks = listElement.querySelectorAll("a");
-    // On ajoute un écouteur d'événement sur chaque lien de carte
-    const cardLinkClickHandler = (event) => {
-      event.preventDefault();
-      // On met à jour l'URL de la page sans recharger la page
-      window.history.pushState({}, "", event.currentTarget.href);
-      const headerElement = document.querySelector("header");
-      headerElement.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
-    };
-    // On ajoute un écouteur d'événement sur chaque lien de carte
-    for (let i = 0; i < cardsLinks.length; i++) {
-      cardsLinks[i].addEventListener("click", cardLinkClickHandler);
-    }
+    // Ajout des écouteurs d'événements sur les liens de carte
+    listElement.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.history.pushState({}, "", event.currentTarget.href);
+        document.querySelector("header").dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
+      });
+    });
   };
 
   // Initialisation de la liste de cartes
   filterAndPaginate();
 
-  // On ajoute un écouteur d'événement sur le champ de recherche
+  // Ajout d'un écouteur d'événement sur le champ de recherche
   searchInput.addEventListener("input", (e) => {
-    e.preventDefault();
     searchInputValue = e.target.value;
-    // On revient à la première page lorsqu'on effectue une recherche
-    // pour éviter d'afficher une page vide si on est sur une page supérieure
-    // au nombre de pages résultant de la recherche
-    currentPage = 1;
-    // On met à jour l'URL de la page sans recharger la page
+    currentPage = 1; // On revient à la première page lorsqu'on effectue une recherche
     const url = new URL(window.location);
     url.searchParams.set("search", searchInputValue);
     url.searchParams.set("page", currentPage);
     window.history.pushState({}, "", url);
-    // On filtre et on pagine les items
     filterAndPaginate();
   });
 
-  // On ajoute un écouteur d'événement sur le bouton précédent du navigateur
+  // Ajout d'un écouteur d'événement sur le bouton précédent du navigateur
   window.addEventListener("popstate", () => {
-    currentPage =
-      parseInt(new URL(window.location).searchParams.get("page")) || 1;
+    const urlParams = new URLSearchParams(window.location.search);
+    currentPage = parseInt(urlParams.get("page")) || 1;
+    searchInputValue = urlParams.get("search") || "";
+    searchInput.value = searchInputValue;
     filterAndPaginate();
   });
 };

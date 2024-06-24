@@ -5,7 +5,7 @@ import { ProductCard } from "./Partials/ProductCard";
 import { ProductRow } from "./Partials/ProductRow";
 
 /**
- * Page de la liste des utilisateurs
+ * Page de la liste des produits
  * 2 modes d'affichage : grille et tableau
  *
  * @param {HTMLElement} element
@@ -31,15 +31,17 @@ export const Products = (element) => {
       </div>
     </div>
     <div id="products-list"></div>
-    `;
+  `;
 
   const productsList = element.querySelector("#products-list");
+
+  const gridModeBtn = element.querySelector("#grid-mode-btn");
+  const tableModeBtn = element.querySelector("#table-mode-btn");
 
   let categoryId = url.searchParams.get("category");
   let intCategoryId = parseInt(categoryId);
 
-
-  // Fonction pour afficher les utilisateurs en fonction du mode d'affichage
+  // Fonction pour afficher les produits en fonction du mode d'affichage
   const render = () => {
     if (mode === "grid") {
       CardsList(productsList, products, ProductCard, ["name", "description"], intCategoryId);
@@ -49,10 +51,12 @@ export const Products = (element) => {
         products,
         ProductRow,
         ["name", "description"],
-        ["Nom", "prix", "Catégorie", "lien"], intCategoryId
+        ["Nom", "prix", "Catégorie", "lien"], 
+        intCategoryId
       );
     }
   };
+
   // Met à jour le mode dans l'URL
   const putModeInQueryString = () => {
     const url = new URL(window.location.href);
@@ -73,10 +77,6 @@ export const Products = (element) => {
 
   // Initialisation de la page
   render();
-
-  const gridModeBtn = document.querySelector("#grid-mode-btn");
-  const tableModeBtn = document.querySelector("#table-mode-btn");
-
   markActiveMode();
 
   // Ajout des écouteurs d'événements sur les boutons de mode d'affichage
@@ -87,7 +87,6 @@ export const Products = (element) => {
     render();
   });
 
-  // Ajout des écouteurs d'événements sur les boutons de mode d'affichage
   tableModeBtn.addEventListener("click", () => {
     mode = "table";
     markActiveMode();

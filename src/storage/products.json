@@ -59,119 +59,134 @@
       "price": 19.99,
       "description": "Une tasse qui remue votre café automatiquement. Parce que remuer soi-même, c'est dépassé.",
       "image": "public/tasse_autotournante.png",
-      "category": 1
+      "category": 1,
+      "quantity": 0
     },
     {
       "id": 2,
       "name": "Oreiller Musical",
       "price": 34.99,
       "description": "Un oreiller avec haut-parleurs intégrés pour écouter de la musique en dormant. Pour des rêves mélodieux.",
-      "image": "oreiller_musical.png",
-      "category": 2
+      "image": "public/oreiller_musical.png",
+      "category": 2,
+      "quantity": 0
     },
     {
       "id": 3,
       "name": "Chaussettes Lumineuses",
       "price": 14.99,
       "description": "Des chaussettes qui s'illuminent dans le noir. Idéales pour ne jamais perdre ses pieds.",
-      "image": "chaussettes_lumineuses.png",
-      "category": 2
+      "image": "public/chaussettes_lumineuses.png",
+      "category": 2,
+      "quantity": 0
     },
     {
       "id": 4,
-      "name": "Parapluie À l'Envers",
+      "name": "Grille-Pain à Selfie",
       "price": 24.99,
-      "description": "Un parapluie qui s'ouvre à l'envers. Parce que parfois, la pluie aussi aime être surprise.",
-      "image": "parapluie_envers.png",
-      "category": 3
+      "description": "Un grille-pain avec une caméra intégrée pour capturer des selfies parfaits pendant que vous faites griller votre pain.",
+      "image": "public/grille_pain.png",
+      "category": 3,
+      "quantity": 0
     },
     {
       "id": 5,
       "name": "Stylo Plante",
       "price": 9.99,
       "description": "Un stylo avec une petite plante en pot à l'intérieur. Écrivez et faites pousser en même temps.",
-      "image": "stylo_plante.png",
-      "category": 3
+      "image": "public/stylo_plante.png",
+      "category": 3,
+      "quantity": 0
     },
     {
       "id": 6,
       "name": "Lampe à Lave Monstre",
       "price": 49.99,
       "description": "Une lampe à lave en forme de monstre qui illumine votre pièce d'une lumière effrayante.",
-      "image": "lampe_lave_monstre.png",
-      "category": 1
+      "image": "public/lampe_lave_monstre.png",
+      "category": 1,
+      "quantity": 0
     },
     {
       "id": 7,
       "name": "Miroir Compliments",
       "price": 29.99,
       "description": "Un miroir qui vous fait des compliments chaque fois que vous vous regardez dedans.",
-      "image": "miroir_compliments.png",
-      "category": 4
+      "image": "public/miroir_compliments.png",
+      "category": 4,
+      "quantity": 0
     },
     {
       "id": 8,
       "name": "Porte-clés Bavard",
       "price": 12.99,
       "description": "Un porte-clés qui parle et fait des blagues à chaque fois que vous y touchez.",
-      "image": "portecles_bavard.png",
-      "category": 2
+      "image": "public/portecles_bavard.png",
+      "category": 2,
+      "quantity": 0
     },
     {
       "id": 9,
       "name": "Machine à Popcorn Portable",
       "price": 39.99,
       "description": "Une mini machine à popcorn à emporter partout avec vous. Pour des en-cas croustillants à tout moment.",
-      "image": "machine_popcorn.png",
-      "category": 1
+      "image": "public/machine_popcorn.png",
+      "category": 1,
+      "quantity": 0
     },
     {
       "id": 10,
       "name": "Coussin Sécurité",
       "price": 24.99,
       "description": "Un coussin qui se gonfle automatiquement en cas de chute. Sécurité avant tout !",
-      "image": "coussin_securite.png",
-      "category": 3
+      "image": "public/coussin_securite.png",
+      "category": 3,
+      "quantity": 0
     },
     {
       "id": 11,
       "name": "Dé Décisions",
       "price": 7.99,
       "description": "Un dé géant avec des réponses à vos questions existentielles. Laissez le hasard décider pour vous.",
-      "image": "de_decisions.png",
-      "category": 5
+      "image": "public/de_decisions.png",
+      "category": 5,
+      "quantity": 0
     },
     {
       "id": 12,
       "name": "Sifflet Invisible",
       "price": 9.99,
       "description": "Un sifflet qui émet un son à haute fréquence que seuls les chiens peuvent entendre. Pour communiquer en secret.",
-      "image": "sifflet_invisible.png",
-      "category": 2
+      "image": "public/sifflet_invisible.png",
+      "category": 2,
+      "quantity": 0
     },
     {
       "id": 13,
       "name": "Baguette à Bulles",
       "price": 14.99,
       "description": "Une baguette magique qui génère des bulles de savon. Idéale pour les apprentis sorciers.",
-      "image": "baguette_bulles.png",
-      "category": 5
+      "image": "public/baguette_bulles.png",
+      "category": 5,
+      "quantity": 0
     },
     {
       "id": 14,
       "name": "Post-it Électronique",
       "price": 19.99,
       "description": "Des post-it digitaux qui s'illuminent pour vous rappeler vos tâches. Parce que les notes en papier, c'est trop 20ème siècle.",
-      "image": "postit_electronique.png",
-      "category": 1
+      "image": "public/postit_electronique.png",
+      "category": 1,
+      "quantity": 0
     },
     {
       "id": 15,
       "name": "Ventilateur de Poche",
       "price": 15.99,
       "description": "Un mini ventilateur à glisser dans la poche pour rester au frais en toute circonstance.",
-      "image": "ventilateur_poche.png",
-      "category": 2
+      "image": "public/ventilateur_poche.png",
+      "category": 2,
+      "quantity": 0
     }
   ]
 }

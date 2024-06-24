@@ -12,10 +12,6 @@ export const Nav = (element) => {
 
   const links = [
     { href: "/", text: "Accueil" },
-    { 
-      text: "Catégorie", 
-      dropdown: categoryLinks 
-    },
     { href: "/contact", text: "Contact" },
   ];
 
@@ -30,27 +26,24 @@ export const Nav = (element) => {
         <ul class="navbar-nav">
           ${links
             .map(
-              (link) => link.dropdown 
-                ? `
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    ${link.text}
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#" onclick="navigateToCategory('none')">Pas de catégories</a></li>
-                    ${link.dropdown.map(sublink => `
-                      <li><a class="dropdown-item" href="#" onclick="navigateToCategory('${sublink.category}')">${sublink.text}</a></li>
-                    `).join('')}
-                  </ul>
-                </li>
-                `
-                : `
+              (link) => `
                 <li class="nav-item">
                   <a class="nav-link" href="${link.href}">${link.text}</a>
                 </li>
-                `
+              `
             )
             .join("")}
+          <li class="nav-item dropdown category-dropdown d-none">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Catégorie
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#" onclick="navigateToCategory('none')">Pas de catégories</a></li>
+              ${categoryLinks.map(sublink => `
+                <li><a class="dropdown-item" href="#" onclick="navigateToCategory('${sublink.category}')">${sublink.text}</a></li>
+              `).join('')}
+            </ul>
+          </li>
         </ul>
       </div>
 
@@ -58,13 +51,12 @@ export const Nav = (element) => {
       <div class="cart-container">
         <a href="/panier" class="nav-link">
           <i class="bi bi-cart"></i> Panier
-          <!-- Ici, vous pouvez afficher le nombre d'articles dans le panier -->
+          <span id="cart-count"></span>
         </a>
       </div>
     </div>
   </nav>
 `;
-
 
   window.navigateToCategory = (categoryId) => {
     let url = new URL(window.location);
@@ -74,6 +66,19 @@ export const Nav = (element) => {
     headerElement.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
     const main = document.querySelector("main");
     Products(main);
+  };
+
+  const isHomePage = () => {
+    return window.location.pathname === "/";
+  };
+
+  const toggleCategoryDropdown = () => {
+    const categoryDropdown = element.querySelector('.category-dropdown');
+    if (isHomePage()) {
+      categoryDropdown.classList.remove('d-none');
+    } else {
+      categoryDropdown.classList.add('d-none');
+    }
   };
 
   // Remplace les liens par des événements de navigation
@@ -91,6 +96,7 @@ export const Nav = (element) => {
       removeActive();
       markAsActive();
       changePageTitle();
+      toggleCategoryDropdown();
     };
 
     // Ajoute un écouteur d'événement sur chaque lien de navigation
@@ -135,6 +141,7 @@ export const Nav = (element) => {
   markAsActive();
   replaceLinksByEvents();
   changePageTitle();
+  toggleCategoryDropdown();
 
   // Ajoute un écouteur d'événement pour gérer les événements de navigation du navigateur (précédent/suivant)
   window.addEventListener("popstate", () => {
@@ -142,5 +149,6 @@ export const Nav = (element) => {
     markAsActive();
     changePageTitle();
     element.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
+    toggleCategoryDropdown();
   });
 };

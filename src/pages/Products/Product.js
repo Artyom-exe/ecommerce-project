@@ -1,25 +1,13 @@
+// product.js
+
 import productsData from "../../storage/products.json";
-import { Category } from "./Partials/Category";
-import { Panier } from "../Panier";
+import { ajouterAuPanier } from "../../components/cart";
 
-let panier = JSON.parse(localStorage.getItem('panier')) || [];
-
-/**
- * Page des détails d'un produit
- *
- * @param {HTMLElement} element
- * @returns {void}
- */
 export const Product = (element) => {
-  // on récupère l'identifiant du produit depuis l'URL
   const url = new URL(window.location.href);
   const productId = parseInt(url.searchParams.get("id"));
-  console.log(productId);
-  
-  // on récupère le produit correspondant à l'identifiant
   const product = productsData.products.find((product) => product.id === productId);
-  
-  // si le produit n'existe pas, on affiche un message d'erreur
+
   if (!product) {
     element.innerHTML = `
       <h1>Produit non trouvé</h1>
@@ -33,32 +21,43 @@ export const Product = (element) => {
       <div class="text-left w-100" style="max-width: 600px;">
         <div class="d-flex justify-content-between align-items-center">
           <h1>${product.name}</h1>
-          <h2 class="card-price">${product.price}</h2>
+          <h2 class="card-price">${product.price} €</h2>
         </div>
         <p>${product.description}</p>
         <img class="img-product" src="${product.image}" style="width: 100%;">
       </div>
       <div class="text-left mt-3 w-100" style="max-width: 600px;">
-        ${Category(product.category)}
-        <button class="btn btn-primary mt-2" onclick="ajouterAuPanier(${productId})">Ajouter au panier</button>
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary" type="button" id="decrease-quantity">-</button>
+          <input type="text" class="form-control text-center" id="quantity" value="1" readonly>
+          <button class="btn btn-outline-secondary" type="button" id="increase-quantity">+</button>
+        </div>
+        <button class="btn btn-primary mt-2" id="add-to-cart">Ajouter au panier</button>
       </div>
     </div>
   `;
-};
 
-// Fonction pour ajouter un produit au panier
-window.ajouterAuPanier = function (id) {
-  const produit = productsData.products.find((product) => product.id === id);
-  if (produit) {
-    panier.push(produit);
-    localStorage.setItem('panier', JSON.stringify(panier)); // Mettre à jour le localStorage
-    alert("Produit ajouté au panier !");
-    reloadPanierSection();
-  }
-}
+  const quantityInput = element.querySelector('#quantity');
+  const decreaseBtn = element.querySelector('#decrease-quantity');
+  const increaseBtn = element.querySelector('#increase-quantity');
 
-// Fonction pour recharger la section du panier
-window.reloadPanierSection = () => {
-  const main = document.querySelector("main");
-  Panier(main);
+  let quantity = 1;
+
+  decreaseBtn.addEventListener('click', () => {
+    if (quantity > 1) {
+      quantity--;
+      quantityInput.value = quantity.toString();
+    }
+  });
+
+  increaseBtn.addEventListener('click', () => {
+    quantity++;
+    quantityInput.value = quantity.toString();
+  });
+
+  document.getElementById('add-to-cart').addEventListener('click', () => {
+    ajouterAuPanier({ ...product, quantity });
+    quantity = 1;
+    quantityInput.value = quantity.toString();
+  });
 };

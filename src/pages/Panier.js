@@ -1,64 +1,55 @@
-// Déclaration globale de panier pour stocker les produits ajoutés au panier
-let panier = JSON.parse(localStorage.getItem('panier')) || [];
+// panier.js
 
-/**
- * Page de panier
- *
- * @param {HTMLElement} element
- * @returns {void}
- */
+import { panier, supprimerProduit, viderPanier, mettreAJourQuantiteProduit } from "../components/cart";
+
 export const Panier = (element) => {
-    element.innerHTML = `
-        <div class="container mt-5">
-        <h1>Mon Panier</h1>
-        <ul id="panier" class="list-group">
-            <!-- Liste des produits ajoutés au panier -->
-        </ul>
-        <button id="viderPanier" class="btn btn-danger mt-3">Vider le panier</button>
-        <button id="passerCommande" class="btn btn-success mt-3">Passer commande</button>
+  element.innerHTML = `
+    <div class="container mt-5">
+      <h1>Mon Panier</h1>
+      <ul id="panier" class="list-group"></ul>
+      <button id="viderPanier" class="btn btn-danger mt-3">Vider le panier</button>
+      <button id="passerCommande" class="btn btn-success mt-3">Passer commande</button>
     </div>
-    `;
+  `;
 
-    // Fonction pour afficher les produits dans le panier
-    function afficherPanier() {
-        const panierListe = document.getElementById("panier");
-        panierListe.innerHTML = ""; // Efface la liste actuelle
+  function afficherPanier() {
+    const panierListe = document.getElementById("panier");
+    if (!panierListe) return;
+    panierListe.innerHTML = "";
 
-        panier.forEach((produit) => {
-            const li = document.createElement("li");
-            li.className = "list-group-item";
-            li.innerHTML = `
-                ${produit.name} (Prix : ${produit.price} €)
-                <button class="btn btn-danger btn-sm float-right" onclick="supprimerProduit(${produit.id})">Supprimer</button>
-            `;
-            panierListe.appendChild(li);
-        });
-    }
-
-    // Fonction pour supprimer un produit du panier
-    window.supprimerProduit = function (id) {
-        const index = panier.findIndex((p) => p.id === id);
-        if (index !== -1) {
-            panier.splice(index, 1);
-            localStorage.setItem('panier', JSON.stringify(panier)); // Mettre à jour le localStorage
-            afficherPanier();
-        }
-    }
-
-    // Écouteur d'événement pour le bouton "Vider le panier"
-    document.getElementById("viderPanier").addEventListener("click", () => {
-        panier.length = 0; // Vide le panier
-        localStorage.setItem('panier', JSON.stringify(panier)); // Mettre à jour le localStorage
-        afficherPanier();
+    panier.forEach((produit) => {
+      const li = document.createElement("li");
+      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.innerHTML = `
+        ${produit.name} (Prix : ${produit.price} €)
+        <div>
+          <button class="btn btn-outline-secondary btn-sm" onclick="mettreAJourQuantiteProduit(${produit.id}, ${produit.quantity - 1})">-</button>
+          <span>${produit.quantity}</span>
+          <button class="btn btn-outline-secondary btn-sm" onclick="mettreAJourQuantiteProduit(${produit.id}, ${produit.quantity + 1})">+</button>
+          <button class="btn btn-danger btn-sm" onclick="supprimerProduit(${produit.id})">Supprimer</button>
+        </div>
+      `;
+      panierListe.appendChild(li);
     });
+  }
 
-    // Écouteur d'événement pour le bouton "Passer commande"
-    document.getElementById("passerCommande").addEventListener("click", () => {
-        // Redirige l'utilisateur vers la page de paiement ou de commande
-        // Remplacez cette ligne par votre propre logique de passage de commande
-        alert("Passer commande !");
-    });
+  window.supprimerProduit = supprimerProduit;
+  window.mettreAJourQuantiteProduit = (id, quantity) => {
+    if (quantity > 0) {
+      mettreAJourQuantiteProduit(id, quantity);
+    } else {
+      supprimerProduit(id);
+    }
+  };
 
-    // Affiche le panier initial
-    afficherPanier();
-}
+  document.getElementById("viderPanier").addEventListener("click", viderPanier);
+
+  document.getElementById("passerCommande").addEventListener("click", () => {
+    alert("Passer commande !");
+    viderPanier();
+  });
+
+  afficherPanier();
+
+  document.addEventListener('panierUpdated', afficherPanier);
+};
