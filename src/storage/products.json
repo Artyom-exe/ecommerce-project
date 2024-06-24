@@ -58,7 +58,7 @@
       "name": "Tasse Autotournante",
       "price": 19.99,
       "description": "Une tasse qui remue votre café automatiquement. Parce que remuer soi-même, c'est dépassé.",
-      "image": "public/tasse_autotournante.png",
+      "image": "/public/tasse_autotournante.png",
       "category": 1,
       "quantity": 0,
       "manufacturer": "MondeFarfelu",
