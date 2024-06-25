@@ -8,11 +8,11 @@ import { TextInput } from "./TextInput";
  * @param {HTMLElement} element
  * @param {Object} data
  * @param {Function} itemTemplate
- * @param {string[]} searchableFields
+ * @param {string} searchableField - Le champ dans lequel effectuer la recherche.
  * @param {string} [category] - ID de la catégorie sélectionnée.
  * @returns {void}
  */
-export const CardsList = (element, data, itemTemplate, searchableFields, category) => {
+export const CardsList = (element, data, itemTemplate, searchableField, category) => {
   let items = data.products;
   
   // On récupère le numéro de page et la valeur du champ de recherche dans l'URL
@@ -62,7 +62,7 @@ export const CardsList = (element, data, itemTemplate, searchableFields, categor
     // On filtre les items en fonction de la valeur du champ de recherche
     if (value) {
       filteredItems = filteredItems.filter(
-        item => searchableFields.some(field => item[field].toLowerCase().includes(value))
+        item => item[searchableField].toLowerCase().includes(value)
       );
     }
     

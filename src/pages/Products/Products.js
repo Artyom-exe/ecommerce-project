@@ -11,7 +11,6 @@ import { ProductRow } from "./Partials/ProductRow";
  * @param {HTMLElement} element
  * @returns {void}
  */
-
 export const Products = (element) => {
   // on récupère le mode d'affichage depuis l'URL
   const url = new URL(window.location.href);
@@ -44,7 +43,7 @@ export const Products = (element) => {
   // Fonction pour afficher les produits en fonction du mode d'affichage
   const render = () => {
     if (mode === "grid") {
-      CardsList(productsList, products, ProductCard, ["name", "description"], intCategoryId);
+      CardsList(productsList, products, ProductCard, "name", intCategoryId); // Changement ici pour n'inclure que le champ "name"
     } else if (mode === "table") {
       DataTable(
         productsList,

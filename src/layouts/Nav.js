@@ -68,6 +68,7 @@ export const Nav = (element) => {
     headerElement.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
     const main = document.querySelector("main");
     Products(main);
+    toggleCategoryDropdown(); // Appel de la fonction ici aussi
   };
 
   const isHomePage = () => {
@@ -132,18 +133,18 @@ export const Nav = (element) => {
 
     // Si la page courante n'est pas une page de navigation, on affiche uniquement le nom de l'application
     if (!activeLink) {
-      document.title = "Une App";
+      document.title = "Projetc JS";
       return;
     }
 
-    document.title = `${activeLink.textContent} - Une App`;
+    document.title = `${activeLink.textContent} - Projetc JS`;
   };
 
   // Initialise la barre de navigation
   markAsActive();
   replaceLinksByEvents();
   changePageTitle();
-  toggleCategoryDropdown();
+  toggleCategoryDropdown(); // Appel initial de la fonction
 
   // Ajoute un écouteur d'événement pour gérer les événements de navigation du navigateur (précédent/suivant)
   window.addEventListener("popstate", () => {
@@ -151,6 +152,6 @@ export const Nav = (element) => {
     markAsActive();
     changePageTitle();
     element.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
-    toggleCategoryDropdown();
+    toggleCategoryDropdown(); // Appel de la fonction ici aussi
   });
 };
