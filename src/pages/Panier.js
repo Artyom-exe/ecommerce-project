@@ -40,6 +40,7 @@ export const Panier = (element) => {
     });
   }
 
+  // Assignation des fonctions aux variables globales pour pouvoir les appeler dans le HTML
   window.supprimerProduit = supprimerProduit;
   window.mettreAJourQuantiteProduit = (id, quantity) => {
     if (quantity > 0) {
@@ -49,18 +50,22 @@ export const Panier = (element) => {
     }
   };
 
+  // Événement pour vider le panier
   document.getElementById("viderPanier").addEventListener("click", () => {
     if (confirm("Êtes-vous sûr de vouloir vider le panier ?")) {
       viderPanier();
     }
   });
 
+  // Événement pour passer la commande
   document.getElementById("passerCommande").addEventListener("click", () => {
     alert("Passer commande !");
     viderPanier();
   });
 
+  // Affichage initial du panier
   afficherPanier();
 
+  // Écoute de l'événement personnalisé pour mettre à jour le panier
   document.addEventListener('panierUpdated', afficherPanier);
 };

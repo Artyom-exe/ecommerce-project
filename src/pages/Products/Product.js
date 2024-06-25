@@ -26,14 +26,17 @@ export const Product = (element) => {
 
     let starsHTML = '';
 
+    // Ajout des étoiles pleines
     for (let i = 1; i <= filledStars; i++) {
       starsHTML += '<i class="fas fa-star"></i>';
     }
 
+    // Ajout d'une demi-étoile si applicable
     if (halfStar) {
       starsHTML += '<i class="fas fa-star-half-alt"></i>';
     }
 
+    // Ajout des étoiles vides
     const emptyStars = starsTotal - Math.ceil(rating);
     for (let i = 1; i <= emptyStars; i++) {
       starsHTML += '<i class="far fa-star"></i>';
@@ -46,6 +49,7 @@ export const Product = (element) => {
     `;
   };
 
+  // Génération du HTML pour les avis des clients
   const reviewsHTML = product.reviews.map(review => `
     <div class="card mb-3">
       <div class="card-body">
@@ -55,6 +59,7 @@ export const Product = (element) => {
     </div>
   `).join('');
 
+  // Mise à jour du contenu de l'élément avec les informations du produit
   element.innerHTML = `
     <div class="container py-5">
       <div class="row">
@@ -95,6 +100,7 @@ export const Product = (element) => {
 
   let quantity = 1;
 
+  // Événement pour diminuer la quantité
   decreaseBtn.addEventListener('click', () => {
     if (quantity > 1) {
       quantity--;
@@ -102,11 +108,13 @@ export const Product = (element) => {
     }
   });
 
+  // Événement pour augmenter la quantité
   increaseBtn.addEventListener('click', () => {
     quantity++;
     quantityInput.value = quantity.toString();
   });
 
+  // Événement pour ajouter au panier
   document.getElementById('add-to-cart').addEventListener('click', () => {
     ajouterAuPanier({ ...product, quantity });
     quantity = 1;
